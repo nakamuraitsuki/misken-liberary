@@ -26,9 +26,26 @@ const Users = {
     findById: `SELECT * FROM users WHERE id = ?;`,
     findByTweetId: `SELECT * FROM users WHERE id = (SELECT user_id FROM tweets WHERE id = ?);`,
 };
+
+//本に関する情報のクエリ
+const Books = {
+    createTable:`
+        CREATE TABLE IF NOT EXISTS books(
+            id INTEGER PRIMARY KEY AUTOINCRMENT,
+            name TEXT NOT NULL,
+            author TEXT NOT NULL,
+            publisher TEXT NOT NULL
+        )
+    `,
+    create: `INSERT INTO books (name, author, publisher) VALUES (?, ?, ?);`,
+    findAll: `SELECT * FROM books;`,
+    findByAutor: `SELECT * FROM books WHERE author = ?;`,
+    findByPublisher: `SELECT * FROM books WHERE publisher = ? ;`,
+};
   
 module.exports = {
     Tweets,
     Users,
+    Books,
 };
   

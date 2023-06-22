@@ -61,11 +61,21 @@ const FUNCTION_VIEW = () =>`
 <h1 class="func">ミス研ライブラリー</h1>
 <hr/>
 <h2 class="func">機能一覧</h2>
-<h2 class="func"><a href="CL/name.search">作者から検索</a></h2>
-<h2 class="func"><a href="CL/company.search">出版社から検索</a></h2>
+<h2 class="func"><a href="/authorsearch">作者から検索</a></h2>
+<h2 class="func"><a href="CL/publishersearch">出版社から検索</a></h2>
 <h2 class="func"><a href="CL/allbook">蔵書一覧</a><h2>
 <h2 class="func"><a href="CL/addbook">本を追加</a></h2>
 `;
+
+const SEARCH_AUTHOR = () =>`
+<h1 class="title">作者から検索</h1>
+<form action="/tweet" method="POST">
+    <label for="content">作者</label>
+    <textarea name="content" id="content" rows="1"></textarea>
+    <button type="submit">検索</button>
+</form>
+`;
+
 module.exports = {
     HTML,
     TWEET_LIST_VIEW,
@@ -73,4 +83,5 @@ module.exports = {
     USER_TWEET_LIST_VIEW,
     TWEET_FORM_VIEW,
     FUNCTION_VIEW,
+    SEARCH_AUTHOR,
 };

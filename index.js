@@ -11,13 +11,13 @@ db.serialize(() => {
     db.run(queries.Tweets.createTable);
     db.run(queries.Users.createTable);
 
-    db.run(queries.Users.create, 'りんご太郎', 'apple@example.com', '2022-08-15 00:00:00');
-    db.run(queries.Users.create, 'みかん次郎', 'mikan@example.com', '2022-08-15 00:00:01');
-    db.run(queries.Users.create, 'ぶどう三郎', 'budo@example.com', '2022-08-15 00:00:02');
-
-    db.run(queries.Tweets.create, 'あけおめ！', 3, '2023-01-01 00:00:00');
-    db.run(queries.Tweets.create, '今年もよろしくお願いします！', 2, '2023-01-01 00:00:01');
-    db.run(queries.Tweets.create, '今年こそは痩せるぞ！', 1, '2023-01-01 00:00:02');
+//    db.run(queries.Users.create, 'りんご太郎', 'apple@example.com', '2022-08-15 00:00:00');
+//    db.run(queries.Users.create, 'みかん次郎', 'mikan@example.com', '2022-08-15 00:00:01');
+//    db.run(queries.Users.create, 'ぶどう三郎', 'budo@example.com', '2022-08-15 00:00:02');
+//
+//    db.run(queries.Tweets.create, 'あけおめ！', 3, '2023-01-01 00:00:00');
+//    db.run(queries.Tweets.create, '今年もよろしくお願いします！', 2, '2023-01-01 00:00:01');
+//    db.run(queries.Tweets.create, '今年こそは痩せるぞ！', 1, '2023-01-01 00:00:02');
 });
 
 const app = new Hono();
@@ -44,6 +44,18 @@ app.get("/", async (c) => {
   return c.html(response);
 });
 
+//author.searchに訪れたときのやつ
+app.get("/authorsearch",async (c) =>{
+    const author_search_form = templates.SEARCH_AUTHOR();
+
+    const response = templates.HTML(author_search_form);
+
+    return c.html(response);
+});
+
+app.post("authorsearch",async (c) =>{
+    return c.redirect(`user/register`);
+});
 
 app.get("/user/register", async (c) => {
     const registerForm = templates.USER_REGISTER_FORM_VIEW();
@@ -52,6 +64,7 @@ app.get("/user/register", async (c) => {
 
     return c.html(response);
 });
+
 
 app.post("/user/register", async (c) => {
     const body = await c.req.parseBody();
