@@ -68,4 +68,8 @@ body {
   button[type="submit"]:hover {
     background-color: #2a6cb8;
   }
+
+  .func{
+    text-align: center;
+  }
   

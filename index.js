@@ -1,6 +1,6 @@
 const sqlite3 = require("sqlite3").verbose();
 const queries = require("./queries");
-const templates = require("./template");
+const templates = require("./templates");
 const { serve } = require("@hono/node-server");
 const { serveStatic } = require("@hono/node-server/serve-static");
 const { Hono } = require("hono");
@@ -22,19 +22,22 @@ db.serialize(() => {
 
 const app = new Hono();
 
+//以下localhost:3000に訪れたときのやつ
 app.get("/", async (c) => {
+    //tweetsという変数の中にTweets.findAllでツイートを代入
   const tweets = await new Promise((resolve) => {
       db.all(queries.Tweets.findAll, (err, rows) => {
           resolve(rows);
       });
-  });
-
+    });
+    //TWEET_LISTでtweetsに代入したツイートを表示する変数をtweetListにした
   const tweetList = templates.TWEET_LIST_VIEW(tweets);
-
+  //responseが呼び出されたときHTMLのボディにtweetListを入れてやる
   const response = templates.HTML(tweetList);
-
+  //responceを呼び出す。
   return c.html(response);
 });
+
 
 app.get("/user/register", async (c) => {
     const registerForm = templates.USER_REGISTER_FORM_VIEW();

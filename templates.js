@@ -57,10 +57,18 @@ const TWEET_FORM_VIEW = (users) => `
 </form>
 `;
 
+const FUNCTION_VIEW = () =>`
+<h1 class="func">機能一覧</h1>
+<h2 class="func"><a href="CL/name.search">作者から検索</a></h2>
+<h2 class="func"><a href="CL/company.search">出版社から検索</a></h2>
+<h2 class="func"><a href="CL/allbook">蔵書一覧</a><h2>
+<h2 class="func"><a href="CL/addbook">本を追加</a></h2>
+`;
 module.exports = {
     HTML,
     TWEET_LIST_VIEW,
     USER_REGISTER_FORM_VIEW,
     USER_TWEET_LIST_VIEW,
     TWEET_FORM_VIEW,
+    FUNCTION_VIEW,
 };
