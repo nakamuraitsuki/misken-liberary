@@ -3,7 +3,7 @@ const HTML = (body) => `
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>これはただの文字列です</title>
+    <title>ミス研ライブラリー</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/style.css">
 </head>
@@ -58,7 +58,9 @@ const TWEET_FORM_VIEW = (users) => `
 `;
 
 const FUNCTION_VIEW = () =>`
-<h1 class="func">機能一覧</h1>
+<h1 class="func">ミス研ライブラリー</h1>
+<hr/>
+<h2 class="func">機能一覧</h2>
 <h2 class="func"><a href="CL/name.search">作者から検索</a></h2>
 <h2 class="func"><a href="CL/company.search">出版社から検索</a></h2>
 <h2 class="func"><a href="CL/allbook">蔵書一覧</a><h2>

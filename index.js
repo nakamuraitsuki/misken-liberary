@@ -25,16 +25,22 @@ const app = new Hono();
 //以下localhost:3000に訪れたときのやつ
 app.get("/", async (c) => {
     //tweetsという変数の中にTweets.findAllでツイートを代入
-  const tweets = await new Promise((resolve) => {
-      db.all(queries.Tweets.findAll, (err, rows) => {
-          resolve(rows);
-      });
-    });
+  //const tweets = await new Promise((resolve) => {
+  //    db.all(queries.Tweets.findAll, (err, rows) => {
+  //        resolve(rows);
+  //    });
+  //  });
     //TWEET_LISTでtweetsに代入したツイートを表示する変数をtweetListにした
-  const tweetList = templates.TWEET_LIST_VIEW(tweets);
+  //const tweetList = templates.TWEET_LIST_VIEW(tweets);
   //responseが呼び出されたときHTMLのボディにtweetListを入れてやる
-  const response = templates.HTML(tweetList);
-  //responceを呼び出す。
+  //const response = templates.HTML(tweetList);
+
+  //function_view にFUNCTION_VIEWを入れる
+ const function_view = templates.FUNCTION_VIEW();
+ //response でHTMLのbodyにfunction_viewを入れる
+ const response = templates.HTML(function_view);
+ 
+  //()の中の指示を呼び出す。
   return c.html(response);
 });
 
