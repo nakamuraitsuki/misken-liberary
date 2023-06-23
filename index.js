@@ -10,7 +10,9 @@ const db = new sqlite3.Database("database.db");
 db.serialize(() => {
     db.run(queries.Tweets.createTable);
     db.run(queries.Users.createTable);
+    db.run(queries.Books.createTable);
 
+    db.run(queries.Books.create, '遠回りする雛','米澤穂信', '角川文庫');
 //    db.run(queries.Users.create, 'りんご太郎', 'apple@example.com', '2022-08-15 00:00:00');
 //    db.run(queries.Users.create, 'みかん次郎', 'mikan@example.com', '2022-08-15 00:00:01');
 //    db.run(queries.Users.create, 'ぶどう三郎', 'budo@example.com', '2022-08-15 00:00:02');
@@ -44,6 +46,21 @@ app.get("/", async (c) => {
   return c.html(response);
 });
 
+app.get("/allbook",async (c) =>{
+    //allbookに蔵書の中身を入れる
+    const allbook = await new Promise((resolve) => {
+      db.all(queries.Books.findAll, (err, rows) => {
+           resolve(rows);
+       });
+    });
+  //ALLBOOL_LIST_VIEWでallbookに代入したツイートを表示する変数をallbooklistにした
+  const allbooklist = templates.ALLBOOK_LIST_VIEW(allbook);
+  //responseが呼び出されたときHTMLのボディにtweetListを入れてやる
+  response = templates.HTML(allbooklist);
+  //const response = templates.HTML(tweetList);
+  return c.html(response);
+});
+
 //author.searchに訪れたときのやつ
 app.get("/authorsearch",async (c) =>{
     const author_search_form = templates.SEARCH_AUTHOR();
@@ -53,9 +70,7 @@ app.get("/authorsearch",async (c) =>{
     return c.html(response);
 });
 
-app.post("authorsearch",async (c) =>{
-    return c.redirect(`user/register`);
-});
+
 
 app.get("/user/register", async (c) => {
     const registerForm = templates.USER_REGISTER_FORM_VIEW();

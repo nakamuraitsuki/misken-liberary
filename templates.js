@@ -62,9 +62,9 @@ const FUNCTION_VIEW = () =>`
 <hr/>
 <h2 class="func">機能一覧</h2>
 <h2 class="func"><a href="/authorsearch">作者から検索</a></h2>
-<h2 class="func"><a href="CL/publishersearch">出版社から検索</a></h2>
-<h2 class="func"><a href="CL/allbook">蔵書一覧</a><h2>
-<h2 class="func"><a href="CL/addbook">本を追加</a></h2>
+<h2 class="func"><a href="/publishersearch">出版社から検索</a></h2>
+<h2 class="func"><a href="/allbook">蔵書一覧</a><h2>
+<h2 class="func"><a href="/addbook">本を追加</a></h2>
 `;
 
 const SEARCH_AUTHOR = () =>`
@@ -76,6 +76,15 @@ const SEARCH_AUTHOR = () =>`
 </form>
 `;
 
+const ALLBOOK_LIST_VIEW = (books) => `
+<h1 class="title">蔵書一覧</h1>
+<div class="tweet-list">
+    ${books
+      .map((book) => `<div class="tweet">${book.name}/${book.author}/${book.publisher}</div>`)
+      .join("\n")}
+</div>
+`;
+
 module.exports = {
     HTML,
     TWEET_LIST_VIEW,
@@ -84,4 +93,5 @@ module.exports = {
     TWEET_FORM_VIEW,
     FUNCTION_VIEW,
     SEARCH_AUTHOR,
+    ALLBOOK_LIST_VIEW,
 };

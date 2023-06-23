@@ -31,7 +31,7 @@ const Users = {
 const Books = {
     createTable:`
         CREATE TABLE IF NOT EXISTS books(
-            id INTEGER PRIMARY KEY AUTOINCRMENT,
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
             author TEXT NOT NULL,
             publisher TEXT NOT NULL
