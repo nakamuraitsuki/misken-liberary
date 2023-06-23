@@ -12,7 +12,7 @@ db.serialize(() => {
     db.run(queries.Users.createTable);
     db.run(queries.Books.createTable);
 
-    db.run(queries.Books.create, '遠回りする雛','米澤穂信', '角川文庫');
+    db.run(queries.Books.create, '遠回りする雛','米澤穂信','yonezawahonobu', '角川文庫','kadokawabunnko');
 //    db.run(queries.Users.create, 'りんご太郎', 'apple@example.com', '2022-08-15 00:00:00');
 //    db.run(queries.Users.create, 'みかん次郎', 'mikan@example.com', '2022-08-15 00:00:01');
 //    db.run(queries.Users.create, 'ぶどう三郎', 'budo@example.com', '2022-08-15 00:00:02');
