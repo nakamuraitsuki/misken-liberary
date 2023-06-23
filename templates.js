@@ -13,14 +13,7 @@ const HTML = (body) => `
 </html>
 `;
 
-const TWEET_LIST_VIEW = (tweets) => `
-<h1 class="title">ツイート一覧</h1>
-<div class="tweet-list">
-    ${tweets
-      .map((tweet) => `<div class="tweet">${tweet.content}</div>`)
-      .join("\n")}
-</div>
-`;
+
 
 const USER_REGISTER_FORM_VIEW = () => `
 <h1 class="title">ユーザー登録</h1>
@@ -69,15 +62,16 @@ const FUNCTION_VIEW = () =>`
 
 const SEARCH_AUTHOR = () =>`
 <h1 class="title">作者から検索</h1>
-<form action="/tweet" method="POST">
     <label for="content">作者</label>
-    <textarea name="content" id="content" rows="1"></textarea>
+    <textarea name="author" id="author" rows="1"></textarea>
     <button type="submit">検索</button>
 </form>
+<p><a href="../">＞戻る</a></p>
 `;
 
 const ALLBOOK_LIST_VIEW = (books) => `
 <h1 class="title">蔵書一覧</h1>
+<p><a href="../">＞戻る</a></p>
 <div class="tweet-list">
     ${books
       .map((book) => `<div class="tweet">${book.name}/${book.author}/${book.publisher}</div>`)
@@ -87,7 +81,6 @@ const ALLBOOK_LIST_VIEW = (books) => `
 
 module.exports = {
     HTML,
-    TWEET_LIST_VIEW,
     USER_REGISTER_FORM_VIEW,
     USER_TWEET_LIST_VIEW,
     TWEET_FORM_VIEW,

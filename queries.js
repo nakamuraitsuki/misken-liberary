@@ -39,7 +39,7 @@ const Books = {
             publisher_alp TEXT NOT NULL
         )
     `,
-    create: `INSERT INTO books (name, author, publisher) VALUES (?, ?, ?);`,
+    create: `INSERT INTO books (name, author, author_alp, publisher, publisher_alp) VALUES (?, ?, ?, ?, ?);`,
     findAll: `SELECT * FROM books;`,
     findByAutor: `SELECT * FROM books WHERE author = ?;`,
     findByPublisher: `SELECT * FROM books WHERE publisher = ? ;`,

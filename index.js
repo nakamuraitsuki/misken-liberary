@@ -13,30 +13,12 @@ db.serialize(() => {
     db.run(queries.Books.createTable);
 
     db.run(queries.Books.create, '遠回りする雛','米澤穂信','yonezawahonobu', '角川文庫','kadokawabunnko');
-//    db.run(queries.Users.create, 'りんご太郎', 'apple@example.com', '2022-08-15 00:00:00');
-//    db.run(queries.Users.create, 'みかん次郎', 'mikan@example.com', '2022-08-15 00:00:01');
-//    db.run(queries.Users.create, 'ぶどう三郎', 'budo@example.com', '2022-08-15 00:00:02');
-//
-//    db.run(queries.Tweets.create, 'あけおめ！', 3, '2023-01-01 00:00:00');
-//    db.run(queries.Tweets.create, '今年もよろしくお願いします！', 2, '2023-01-01 00:00:01');
-//    db.run(queries.Tweets.create, '今年こそは痩せるぞ！', 1, '2023-01-01 00:00:02');
 });
 
 const app = new Hono();
 
 //以下localhost:3000に訪れたときのやつ
 app.get("/", async (c) => {
-    //tweetsという変数の中にTweets.findAllでツイートを代入
-  //const tweets = await new Promise((resolve) => {
-  //    db.all(queries.Tweets.findAll, (err, rows) => {
-  //        resolve(rows);
-  //    });
-  //  });
-    //TWEET_LISTでtweetsに代入したツイートを表示する変数をtweetListにした
-  //const tweetList = templates.TWEET_LIST_VIEW(tweets);
-  //responseが呼び出されたときHTMLのボディにtweetListを入れてやる
-  //const response = templates.HTML(tweetList);
-
   //function_view にFUNCTION_VIEWを入れる
  const function_view = templates.FUNCTION_VIEW();
  //response でHTMLのbodyにfunction_viewを入れる
@@ -45,7 +27,7 @@ app.get("/", async (c) => {
   //()の中の指示を呼び出す。
   return c.html(response);
 });
-
+//以下蔵書一覧ページに飛んだ時のやつ
 app.get("/allbook",async (c) =>{
     //allbookに蔵書の中身を入れる
     const allbook = await new Promise((resolve) => {
