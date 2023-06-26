@@ -66,36 +66,14 @@ app.post("/addbook", async (c) => {
     const now = new Date().toISOString();
 
     await new Promise((resolve) => {
-        db.run(queries.Books.create, body.name, body.author, body.author_alp , body.publisher, body.publisher_alp ,now, (err) => {
-            resolve(this.lastID);
+        db.run(queries.Books.create, body.name, body.author, body.author_alp , body.publisher, body.publisher_alp , now, (err) => {
+            resolve();
         });
     });
 
     return c.redirect(`/allbook`);
 });
 
-
-//app.get("/user/register", async (c) => {
-//    const registerForm = templates.USER_REGISTER_FORM_VIEW();
-//
-//    const response = templates.HTML(registerForm);
-//
-//    return c.html(response);
-//});
-
-
-//app.post("/user/register", async (c) => {
-//    const body = await c.req.parseBody();
-//    const now = new Date().toISOString();
-//
-//    const userID = await new Promise((resolve) => {
-//        db.run(queries.Users.create, body.name, body.email, now, (err) => {
-//            resolve(this.lastID);
-//        });
-//    });
-//
-//    return c.redirect(`/user/${userID}`);
-//});
 
 app.get("/user/:id", async (c) => {
     const userId = c.req.param("id");

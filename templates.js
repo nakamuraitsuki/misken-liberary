@@ -54,10 +54,10 @@ const FUNCTION_VIEW = () =>`
 <h1 class="func">ミス研ライブラリー</h1>
 <hr/>
 <h2 class="func">機能一覧</h2>
-<h2 class="func"><a href="/authorsearch">作者から検索</a></h2>
-<h2 class="func"><a href="/publishersearch">出版社から検索</a></h2>
-<h2 class="func"><a href="/allbook">蔵書一覧</a><h2>
-<h2 class="func"><a href="/addbook">本を追加</a></h2>
+<button  type="button" onclick="location.href='/authorsearch'">著者名検索</button>
+<button  type="button" onclick="location.href='/publishersearch'">出版社から検索</button>
+<button  type="button" onclick="location.href='/allbook'">蔵書一覧</button>
+<button  type="button" onclick="location.href='/addbook'">本を追加</button>
 `;
 
 const SEARCH_AUTHOR = () =>`
