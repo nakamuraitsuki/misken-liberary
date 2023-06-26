@@ -79,6 +79,24 @@ const ALLBOOK_LIST_VIEW = (books) => `
 </div>
 `;
 
+const ADD_BOOK_FORM_VIEW = () => `
+<h1 class="title">蔵書を追加</h1>
+<p><a href="../">＞戻る</a></p>
+<form action="/addbook" method="POST">
+    <label for="name">本の名前</label>
+    <input type="text" name="name" id="name" />
+    <label for="name">著者名</label>
+    <input type="text" name="author" id="author" />
+    <label for="name">著者名アルファベットフリガナ</label>
+    <input type="text" name="author_alp" id="author_alp" />
+    <label for="name">出版文庫</label>
+    <input type="text" name="publisher" id="publisher" />
+    <label for="name">出版文庫アルファベットフリガナ</label>
+    <input type="text" name="publisher_alp" id="publisher_alp" />
+    <button type="submit">追加</button>
+</form>
+`;
+
 module.exports = {
     HTML,
     USER_REGISTER_FORM_VIEW,
@@ -87,4 +105,5 @@ module.exports = {
     FUNCTION_VIEW,
     SEARCH_AUTHOR,
     ALLBOOK_LIST_VIEW,
+    ADD_BOOK_FORM_VIEW,
 };

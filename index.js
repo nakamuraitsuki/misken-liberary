@@ -52,29 +52,50 @@ app.get("/authorsearch",async (c) =>{
     return c.html(response);
 });
 
+//addbookに訪れたときのやつ
+app.get("/addbook", async (c) => {
+    const addbookForm = templates.ADD_BOOK_FORM_VIEW();
 
-
-app.get("/user/register", async (c) => {
-    const registerForm = templates.USER_REGISTER_FORM_VIEW();
-
-    const response = templates.HTML(registerForm);
+    const response = templates.HTML(addbookForm);
 
     return c.html(response);
 });
 
-
-app.post("/user/register", async (c) => {
+app.post("/addbook", async (c) => {
     const body = await c.req.parseBody();
     const now = new Date().toISOString();
 
-    const userID = await new Promise((resolve) => {
-        db.run(queries.Users.create, body.name, body.email, now, (err) => {
+    await new Promise((resolve) => {
+        db.run(queries.Books.create, body.name, body.author, body.author_alp , body.publisher, body.publisher_alp ,now, (err) => {
             resolve(this.lastID);
         });
     });
 
-    return c.redirect(`/user/${userID}`);
+    return c.redirect(`/allbook`);
 });
+
+
+//app.get("/user/register", async (c) => {
+//    const registerForm = templates.USER_REGISTER_FORM_VIEW();
+//
+//    const response = templates.HTML(registerForm);
+//
+//    return c.html(response);
+//});
+
+
+//app.post("/user/register", async (c) => {
+//    const body = await c.req.parseBody();
+//    const now = new Date().toISOString();
+//
+//    const userID = await new Promise((resolve) => {
+//        db.run(queries.Users.create, body.name, body.email, now, (err) => {
+//            resolve(this.lastID);
+//        });
+//    });
+//
+//    return c.redirect(`/user/${userID}`);
+//});
 
 app.get("/user/:id", async (c) => {
     const userId = c.req.param("id");
