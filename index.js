@@ -52,6 +52,14 @@ app.get("/authorsearch",async (c) =>{
     return c.html(response);
 });
 
+app.post("/authorsearch",async (c) =>{
+  const body = await c.req.parseBody();
+  if(!body.author){
+    return c.notFound();
+  }
+  return c.redirect(`/authorsearch/${body.author}`);
+})
+
 //publishersearchに訪れたときのやつ
 app.get("/publishersearch",async (c) =>{
     const publisher_search_form = templates.SEARCH_PUBLISHER();
@@ -82,13 +90,6 @@ app.post("/addbook", async (c) => {
 
     return c.redirect(`/allbook`);
 });
-
-
-
-
-
-
-
 
 app.use("/static/*", serveStatic({ root: "./" }));
 

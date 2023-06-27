@@ -13,13 +13,6 @@ const HTML = (body) => `
 </html>
 `;
 
-
-
-
-
-
-
-
 const FUNCTION_VIEW = () =>`
 <h1 class="func">ミス研ライブラリー</h1>
 <hr/>
@@ -32,6 +25,7 @@ const FUNCTION_VIEW = () =>`
 
 const SEARCH_AUTHOR = () =>`
 <h1 class="title">作者から検索</h1>
+<form action="/authorsearch" method="POST">
     <label for="content">作者（アルファベット）</label>
     <textarea name="author" id="author" rows="0"></textarea>
     <div class="func"><button type="submit">検索</button></div>
@@ -41,6 +35,7 @@ const SEARCH_AUTHOR = () =>`
 
 const SEARCH_PUBLISHER = () =>`
 <h1 class="title">出版文庫から検索</h1>
+<form action="/publishersearch" method="POST">
     <label for="content">文庫（アルファベット）</label>
     <textarea name="publisher" id="publisher" rows="0"></textarea>
     <div class="func"><button type="submit">検索</button></div>
