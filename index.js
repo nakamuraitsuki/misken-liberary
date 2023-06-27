@@ -43,11 +43,20 @@ app.get("/allbook",async (c) =>{
   return c.html(response);
 });
 
-//author.searchに訪れたときのやつ
+//authorsearchに訪れたときのやつ
 app.get("/authorsearch",async (c) =>{
     const author_search_form = templates.SEARCH_AUTHOR();
 
     const response = templates.HTML(author_search_form);
+
+    return c.html(response);
+});
+
+//publishersearchに訪れたときのやつ
+app.get("/publishersearch",async (c) =>{
+    const publisher_search_form = templates.SEARCH_PUBLISHER();
+
+    const response = templates.HTML(publisher_search_form);
 
     return c.html(response);
 });

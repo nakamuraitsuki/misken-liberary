@@ -67,20 +67,21 @@ body {
   
   button[type="submit"]:hover {
     background-color: #2a6cb8;
+   
   }
 
   .func{
     text-align: center;
+    margin: 10px;
   }
 
   button[type="button"]{
     background-color:#3f8ce4;
     color: #fff;
-    padding: 20px 30px;
+    padding: 10px 30px;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
-    align-items: center;
   }
   

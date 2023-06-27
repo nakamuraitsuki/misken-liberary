@@ -54,17 +54,26 @@ const FUNCTION_VIEW = () =>`
 <h1 class="func">ミス研ライブラリー</h1>
 <hr/>
 <h2 class="func">機能一覧</h2>
-<button  type="button" onclick="location.href='/authorsearch'">著者名検索</button>
-<button  type="button" onclick="location.href='/publishersearch'">出版社から検索</button>
-<button  type="button" onclick="location.href='/allbook'">蔵書一覧</button>
-<button  type="button" onclick="location.href='/addbook'">本を追加</button>
+<div class="func"><button  type="button" onclick="location.href='/authorsearch'">著者名検索</button></div>
+<div class="func"><button  type="button" onclick="location.href='/publishersearch'">出版社から検索</button></div>
+<div class="func"><button  type="button" onclick="location.href='/allbook'">蔵書一覧</button></div>
+<div class="func"><button  type="button" onclick="location.href='/addbook'">本を追加</button></div>
 `;
 
 const SEARCH_AUTHOR = () =>`
 <h1 class="title">作者から検索</h1>
-    <label for="content">作者</label>
-    <textarea name="author" id="author" rows="1"></textarea>
-    <button type="submit">検索</button>
+    <label for="content">作者（アルファベット）</label>
+    <textarea name="author" id="author" rows="0"></textarea>
+    <div class="func"><button type="submit">検索</button></div>
+</form>
+<p><a href="../">＞戻る</a></p>
+`;
+
+const SEARCH_PUBLISHER = () =>`
+<h1 class="title">出版文庫から検索</h1>
+    <label for="content">文庫（アルファベット）</label>
+    <textarea name="publisher" id="publisher" rows="0"></textarea>
+    <div class="func"><button type="submit">検索</button></div>
 </form>
 <p><a href="../">＞戻る</a></p>
 `;
@@ -93,7 +102,7 @@ const ADD_BOOK_FORM_VIEW = () => `
     <input type="text" name="publisher" id="publisher" />
     <label for="name">出版文庫アルファベットフリガナ</label>
     <input type="text" name="publisher_alp" id="publisher_alp" />
-    <button type="submit">追加</button>
+    <div class="func"><button type="submit">追加</button></div>
 </form>
 `;
 
@@ -104,6 +113,7 @@ module.exports = {
     TWEET_FORM_VIEW,
     FUNCTION_VIEW,
     SEARCH_AUTHOR,
+    SEARCH_PUBLISHER,
     ALLBOOK_LIST_VIEW,
     ADD_BOOK_FORM_VIEW,
 };
