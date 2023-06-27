@@ -53,7 +53,7 @@ const ALLBOOK_LIST_VIEW = (books) => `
 <p><a href="../">＞戻る</a></p>
 <div class="tweet-list">
     ${books
-      .map((book) => `<div class="tweet">${book.name}/${book.author}/${book.publisher}</div>`)
+      .map((book) => `<div class="list">${book.name}/${book.author}/${book.publisher}</div>`)
       .join("\n")}
 </div>
 `;
