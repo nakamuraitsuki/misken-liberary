@@ -8,27 +8,9 @@ body {
     text-align: center;
   }
   
-  .tweet-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    max-width: 768px;
-    padding: 16px;
-    box-sizing: border-box;
-    width: 100%;
-    margin: 0 auto;
-  }
+
   
-  .tweet {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 16px;
-    border-radius: 8px;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
-  }
-  
+
   form {
     display: flex;
     flex-direction: column;

@@ -8,8 +8,7 @@ const { Hono } = require("hono");
 const db = new sqlite3.Database("database.db");
 
 db.serialize(() => {
-    db.run(queries.Tweets.createTable);
-    db.run(queries.Users.createTable);
+  
     db.run(queries.Books.createTable);
 
     db.run(queries.Books.create, '遠回りする雛','米澤穂信','yonezawahonobu', '角川文庫','kadokawabunnko');
@@ -27,6 +26,7 @@ app.get("/", async (c) => {
   //()の中の指示を呼び出す。
   return c.html(response);
 });
+
 //以下蔵書一覧ページに飛んだ時のやつ
 app.get("/allbook",async (c) =>{
     //allbookに蔵書の中身を入れる
@@ -84,58 +84,11 @@ app.post("/addbook", async (c) => {
 });
 
 
-app.get("/user/:id", async (c) => {
-    const userId = c.req.param("id");
 
-    const user = await new Promise((resolve) => {
-        db.get(queries.Users.findById, userId, (err, row) => {
-            resolve(row);
-        });
-    });
 
-    if (!user) {
-        return c.notFound();
-    }
 
-    const tweets = await new Promise((resolve) => {
-        db.all(queries.Tweets.findByUserId, userId, (err, rows) => {
-            resolve(rows);
-        });
-    });
 
-    const userTweetList = templates.USER_TWEET_LIST_VIEW(user, tweets);
 
-    const response = templates.HTML(userTweetList);
-
-    return c.html(response);
-});
-
-app.get("/tweet", async (c) => {
-    const users = await new Promise((resolve) => {
-        db.all(queries.Users.findAll, (err, rows) => {
-            resolve(rows);
-        });
-    });
-
-    const tweetForm = templates.TWEET_FORM_VIEW(users);
-
-    const response = templates.HTML(tweetForm);
-
-    return c.html(response);
-});
-
-app.post("/tweet", async (c) => {
-    const body = await c.req.parseBody();
-    const now = new Date().toISOString();
-
-    await new Promise((resolve) => {
-        db.run(queries.Tweets.create, body.content, body.user_id, now, (err) => {
-            resolve();
-        });
-    });
-
-    return c.redirect("/");
-});
 
 app.use("/static/*", serveStatic({ root: "./" }));
 
