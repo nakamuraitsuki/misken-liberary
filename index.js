@@ -51,15 +51,38 @@ app.get("/authorsearch",async (c) =>{
 
     return c.html(response);
 });
-
+//検索ボタン押した後
 app.post("/authorsearch",async (c) =>{
   const body = await c.req.parseBody();
+  const nothing = templates.NOT_FOUND();
+  resp = templates.HTML(nothing);
   if(!body.author){
-    return c.notFound();
+    return c.html(resp);
   }
   return c.redirect(`/authorsearch/${body.author}`);
 })
+//著者ページ
+app.get("/authorsearch/:authorname", async (c) => {
+  const authorname = c.req.param("authorname");
 
+  const books = await new Promise((resolve) => {
+      db.all(queries.Books.findByAutor, authorname, (err, row) => {
+          resolve(row);
+      });
+  });
+
+  if (!books) {
+    const nothing = templates.NOT_FOUND();
+    response = templates.HTML(nothing);
+      return c.html(response);
+  }
+
+  const authorbooklist = templates.AUTHOR_BOOK_LIST_VIEW(books);
+
+  const response = templates.HTML(authorbooklist);
+
+  return c.html(response);
+});
 //publishersearchに訪れたときのやつ
 app.get("/publishersearch",async (c) =>{
     const publisher_search_form = templates.SEARCH_PUBLISHER();
