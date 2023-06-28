@@ -62,24 +62,24 @@ app.post("/authorsearch",async (c) =>{
   return c.redirect(`/authorsearch/${body.author}`);
 })
 //著者ページ
-app.get("/authorsearch/:authorname", async (c) => {
-  const authorname = c.req.param("authorname");
+app.get("/authorsearch/:name", async (c) => {
+  const name = c.req.param("name");
 
   const books = await new Promise((resolve) => {
-      db.all(queries.Books.findByAutor, authorname, (err, row) => {
+      db.all(queries.Books.findByAutor, name, (err, row) => {
           resolve(row);
       });
   });
 
-  if (!books) {
+  if (typeof books === "undefined") {
     const nothing = templates.NOT_FOUND();
     response = templates.HTML(nothing);
       return c.html(response);
   }
 
-  const authorbooklist = templates.AUTHOR_BOOK_LIST_VIEW(books);
+  const booklist = templates.SEARCH_BOOK_LIST_VIEW(books);
 
-  const response = templates.HTML(authorbooklist);
+  const response = templates.HTML(booklist);
 
   return c.html(response);
 });
@@ -91,7 +91,38 @@ app.get("/publishersearch",async (c) =>{
 
     return c.html(response);
 });
+//検索ボタン押した後
+app.post("/publishersearch",async (c) =>{
+  const body = await c.req.parseBody();
+  const nothing = templates.NOT_FOUND();
+  resp = templates.HTML(nothing);
+  if(!body.publisher){
+    return c.html(resp);
+  }
+  return c.redirect(`/publishersearch/${body.publisher}`);
+})
+//文庫ページ
+app.get("/publishersearch/:name", async (c) => {
+  const name = c.req.param("name");
 
+  const books = await new Promise((resolve) => {
+      db.all(queries.Books.findByPublisher, name, (err, row) => {
+          resolve(row);
+      });
+  });
+
+  if (!books) {
+    const nothing = templates.NOT_FOUND();
+    response = templates.HTML(nothing);
+      return c.html(response);
+  }
+
+  const booklist = templates.SEARCH_BOOK_LIST_VIEW(books);
+
+  const response = templates.HTML(booklist);
+
+  return c.html(response);
+});
 //addbookに訪れたときのやつ
 app.get("/addbook", async (c) => {
     const addbookForm = templates.ADD_BOOK_FORM_VIEW();

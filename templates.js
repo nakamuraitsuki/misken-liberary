@@ -34,7 +34,7 @@ const SEARCH_AUTHOR = () =>`
 <p><a href="../">＞戻る</a></p>
 `;
 //著者の蔵書一覧
-const AUTHOR_BOOK_LIST_VIEW = (books) => `
+const SEARCH_BOOK_LIST_VIEW = (books) => `
 <h1 class="func">以下の本が見つかりました</h1>
 <p><a href="../">＞戻る</a></p>
 <hr/>
@@ -92,7 +92,7 @@ module.exports = {
     HTML,
     FUNCTION_VIEW,
     SEARCH_AUTHOR,
-    AUTHOR_BOOK_LIST_VIEW,
+    SEARCH_BOOK_LIST_VIEW,
     SEARCH_PUBLISHER,
     NOT_FOUND,
     ALLBOOK_LIST_VIEW,
