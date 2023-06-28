@@ -11,7 +11,7 @@ db.serialize(() => {
   
     db.run(queries.Books.createTable);
 
-    db.run(queries.Books.create, '遠回りする雛','米澤穂信','yonezawahonobu', '角川文庫','kadokawabunnko');
+    //db.run(queries.Books.create, '遠回りする雛','米澤穂信','yonezawahonobu', '角川文庫','kadokawabunnko');
 });
 
 const app = new Hono();
@@ -80,10 +80,9 @@ app.get("/addbook", async (c) => {
 
 app.post("/addbook", async (c) => {
     const body = await c.req.parseBody();
-    const now = new Date().toISOString();
 
     await new Promise((resolve) => {
-        db.run(queries.Books.create, body.name, body.author, body.author_alp , body.publisher, body.publisher_alp , now, (err) => {
+        db.run(queries.Books.create, body.name, body.author, body.author_alp , body.publisher, body.publisher_alp ,  (err) => {
             resolve();
         });
     });
