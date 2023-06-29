@@ -57,7 +57,8 @@ body {
     margin: 10px;
   }
   .list{
-    background-color:#fff;
+    text-align: center;
+    background-color:#dcdcdc;
     padding: 10px 30px;
     border: none;
     border-radius: 8px;
@@ -65,6 +66,7 @@ body {
     font-size: 16px;
     align-items: center;
     margin-bottom: 10px
+    
     ;
   }
   .notfound{
@@ -72,8 +74,8 @@ body {
   }
 
   button[type="button"]{
-    background-color:#3f8ce4;
-    color: #fff;
+    background-color:#dcdcdc;
+    color: black;
     padding: 10px 30px;
     border: none;
     border-radius: 8px;

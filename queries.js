@@ -1,5 +1,4 @@
 
-
 //本に関する情報のクエリ
 const Books = {
     createTable:`
@@ -14,6 +13,7 @@ const Books = {
     `,
     create: `INSERT INTO books (name, author, author_alp, publisher, publisher_alp) VALUES (?, ?, ?, ?, ?);`,
     findAll: `SELECT * FROM books;`,
+    findById:`SELECT * FROM books WHERE id = ?;`,
     findByAutor: `SELECT * FROM books WHERE author_alp = ?;`,
     findByPublisher: `SELECT * FROM books WHERE publisher_alp = ? ;`,
 };

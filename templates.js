@@ -1,4 +1,4 @@
-//根幹のhtml雛型
+
 const HTML = (body) => `
 <!DOCTYPE html>
 <html lang="ja">
@@ -13,7 +13,7 @@ const HTML = (body) => `
 </body>
 </html>
 `;
-//スタートページのみてくれ
+
 const FUNCTION_VIEW = () =>`
 <h1 class="func">ミス研ライブラリー</h1>
 <hr/>
@@ -23,7 +23,7 @@ const FUNCTION_VIEW = () =>`
 <div class="func"><button  type="button" onclick="location.href='/allbook'">蔵書一覧</button></div>
 <div class="func"><button  type="button" onclick="location.href='/addbook'">本を追加</button></div>
 `;
-//著者名検索画面
+
 const SEARCH_AUTHOR = () =>`
 <h1 class="title">作者から検索</h1>
 <form action="/authorsearch" method="POST">
@@ -33,18 +33,18 @@ const SEARCH_AUTHOR = () =>`
 </form>
 <p><a href="../">＞戻る</a></p>
 `;
-//著者の蔵書一覧
+
 const SEARCH_BOOK_LIST_VIEW = (books) => `
 <h1 class="func">以下の本が見つかりました</h1>
 <p><a href="../">＞戻る</a></p>
 <hr/>
 <div class="tweet-list">
     ${books
-      .map((book) => `<div class="list">${book.name}/${book.author}/${book.publisher}</div>`)
+      .map((book) => `<div class="list"><button type="button" onclick="location.href='/${book.id}'">${book.name}/${book.author}/${book.publisher}</button></div>`)
       .join("\n")}
 </div>
 `;
-//文庫名検索画面
+
 const SEARCH_PUBLISHER = () =>`
 <h1 class="title">出版文庫から検索</h1>
 <form action="/publishersearch" method="POST">
@@ -54,22 +54,27 @@ const SEARCH_PUBLISHER = () =>`
 </form>
 <p><a href="../">＞戻る</a></p>
 `;
-//蔵書一覧ページみてくれ
+
 const ALLBOOK_LIST_VIEW = (books) => `
 <h1 class="title">蔵書一覧</h1>
 <p><a href="../">＞戻る</a></p>
 <div class="tweet-list">
     ${books
-      .map((book) => `<div class="list">${book.name}/${book.author}/${book.publisher}</div>`)
+      .map((book) => `<div class="list"><button type="button" onclick="location.href='/${book.id}'">${book.name}/${book.author}/${book.publisher}</button></div>`)
       .join("\n")}
 </div>
 `;
-//検索に引っかからなかった時
+
 const NOT_FOUND = () => `
 <h1 class="notfound">該当蔵書なし</h1>
 <p class="notfound"><a href="../">＞戻る</a></p>
 `
-//蔵書追加ページフォーム
+const BOOK_INFOMATION_VIEW = (name,author,publisher) => `
+<h1 class="func">${name}</h1>
+<h2>著者：${author}/出版文庫${publisher}</h2>
+
+`
+
 const ADD_BOOK_FORM_VIEW = () => `
 <h1 class="title">蔵書を追加</h1>
 <p><a href="../">＞戻る</a></p>
