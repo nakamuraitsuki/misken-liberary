@@ -135,6 +135,14 @@ app.get("/addbook", async (c) => {
 app.post("/addbook", async (c) => {
     const body = await c.req.parseBody();
 
+    if(!body.name || !body.author || !body.author_alp || !body.publisher || !body.publisher_alp){
+      const text = "必要事項をすべて入力してください";
+      const please = templates.MESSAGE(text);
+      const response = templates.HTML(please);
+
+      return c.html(response);
+    }
+
     await new Promise((resolve) => {
         db.run(queries.Books.create, body.name, body.author, body.author_alp , body.publisher, body.publisher_alp ,  (err) => {
             resolve();
