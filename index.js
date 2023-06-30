@@ -170,6 +170,8 @@ app.get("/:id", async (c) => {
     return c.html(response);
 });
 
+
+
 app.use("/static/*", serveStatic({ root: "./" }));
 
 serve(app);

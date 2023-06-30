@@ -20,6 +20,7 @@ const FUNCTION_VIEW = () =>`
 <h2 class="func">機能一覧</h2>
 <div class="func"><button  type="button" onclick="location.href='/authorsearch'">著者名検索</button></div>
 <div class="func"><button  type="button" onclick="location.href='/publishersearch'">出版社から検索</button></div>
+<div class="func"><button  type="button" onclick="location.href='/borrow'">貸し出し状況</button></div>
 <div class="func"><button  type="button" onclick="location.href='/allbook'">蔵書一覧</button></div>
 <div class="func"><button  type="button" onclick="location.href='/addbook'">本を追加</button></div>
 `;
