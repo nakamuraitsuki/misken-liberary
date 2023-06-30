@@ -30,8 +30,8 @@ app.get("/allbook",async (c) =>{
            resolve(rows);
        });
     });
-  
-  const allbooklist = templates.ALLBOOK_LIST_VIEW(allbook);
+  const subject ="蔵書一覧";
+  const allbooklist = templates.BOOK_LIST_VIEW(subject,allbook);
 
   response = templates.HTML(allbooklist);
 
@@ -73,8 +73,8 @@ app.get("/authorsearch/:name", async (c) => {
     response = templates.HTML(nothing);
       return c.html(response);
   }
-
-  const booklist = templates.SEARCH_BOOK_LIST_VIEW(books);
+  const subject =  "以下の本が見つかりました";
+  const booklist = templates.BOOK_LIST_VIEW(subject,books);
 
   const response = templates.HTML(booklist);
 
@@ -116,8 +116,8 @@ app.get("/publishersearch/:name", async (c) => {
     response = templates.HTML(nothing);
       return c.html(response);
   }
-
-  const booklist = templates.SEARCH_BOOK_LIST_VIEW(books);
+  const subject ="以下の本が見つかりました";
+  const booklist = templates.BOOK_LIST_VIEW(subject,books);
 
   const response = templates.HTML(booklist);
 

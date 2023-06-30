@@ -34,8 +34,8 @@ const SEARCH_AUTHOR = () =>`
 <p><a href="../">＞戻る</a></p>
 `;
 
-const SEARCH_BOOK_LIST_VIEW = (books) => `
-<h1 class="func">以下の本が見つかりました</h1>
+const BOOK_LIST_VIEW = (subject,books) => `
+<h1 class="func">${subject}</h1>
 <p><a href="../">＞戻る</a></p>
 <hr/>
 <div class="tweet-list">
@@ -55,15 +55,7 @@ const SEARCH_PUBLISHER = () =>`
 <p><a href="../">＞戻る</a></p>
 `;
 
-const ALLBOOK_LIST_VIEW = (books) => `
-<h1 class="title">蔵書一覧</h1>
-<p><a href="../">＞戻る</a></p>
-<div class="tweet-list">
-    ${books
-      .map((book) => `<div class="list"><button type="button" onclick="location.href='/${book.id}'">${book.name}/${book.author}/${book.publisher}</button></div>`)
-      .join("\n")}
-</div>
-`;
+
 
 const MESSAGE = (text) => `
 <h1 class="notfound">${text}</h1>
@@ -98,10 +90,9 @@ module.exports = {
     HTML,
     FUNCTION_VIEW,
     SEARCH_AUTHOR,
-    SEARCH_BOOK_LIST_VIEW,
+    BOOK_LIST_VIEW,
     SEARCH_PUBLISHER,
     MESSAGE,
-    ALLBOOK_LIST_VIEW,
     ADD_BOOK_FORM_VIEW,
     BOOK_INFOMATION_VIEW,
 };
