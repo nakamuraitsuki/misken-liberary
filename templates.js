@@ -37,11 +37,11 @@ const SEARCH_AUTHOR = () =>`
 
 const BOOK_LIST_VIEW = (subject,books) => `
 <h1 class="func">${subject}</h1>
-<p><a href="../">＞戻る</a></p>
+<p><a href="../">戻る</a></p>
 <hr/>
 <div class="tweet-list">
     ${books
-      .map((book) => `<div class="list"><button type="button" onclick="location.href='/${book.id}'">${book.name}/${book.author}/${book.publisher}</button></div>`)
+      .map((book) => `<div class="list"><button type="button" onclick="location.href='/${book.id}'">${book.name} / ${book.author} / ${book.publisher}</button>|貸出可能数${book.stock}</div>`)
       .join("\n")}
 </div>
 `;
