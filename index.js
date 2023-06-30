@@ -139,6 +139,21 @@ app.post("/addbook", async (c) => {
     return c.redirect(`/allbook`);
 });
 
+app.get("/:id", async (c) => {
+  const bookId = c.req.param("id");
+
+  const book = await new Promise((resolve) => {
+    db.get(queries.Books.findById, bookId, (err, row) => {
+        resolve(row);
+    });
+
+  });
+    const bookInfomation = templates.BOOK_INFOMATION_VIEW(book);
+    const response = templates.HTML(bookInfomation);
+
+    return c.html(response);
+});
+
 app.use("/static/*", serveStatic({ root: "./" }));
 
 serve(app);
