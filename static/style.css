@@ -58,7 +58,7 @@ body {
   }
   .list{
     text-align: center;
-    background-color:#dcdcdc;
+    background-color:white;
     padding: 10px 30px;
     border: none;
     border-radius: 8px;
@@ -74,7 +74,7 @@ body {
   }
 
   button[type="button"]{
-    background-color:#dcdcdc;
+    background-color:white;
     color: black;
     padding: 10px 30px;
     border: none;

@@ -65,13 +65,14 @@ const ALLBOOK_LIST_VIEW = (books) => `
 </div>
 `;
 
-const NOT_FOUND = () => `
-<h1 class="notfound">該当蔵書なし</h1>
+const MESSAGE = (text) => `
+<h1 class="notfound">${text}</h1>
 <p class="notfound"><a href="../">＞戻る</a></p>
 `
 const BOOK_INFOMATION_VIEW = (book) => `
 <h1 class="func">${book.name}</h1>
 <h2>著者：${book.author}/出版文庫：${book.publisher}</h2>
+<p>紹介</p>
 <p><a href="../">＞戻る</a></p>
 `
 
@@ -99,7 +100,7 @@ module.exports = {
     SEARCH_AUTHOR,
     SEARCH_BOOK_LIST_VIEW,
     SEARCH_PUBLISHER,
-    NOT_FOUND,
+    MESSAGE,
     ALLBOOK_LIST_VIEW,
     ADD_BOOK_FORM_VIEW,
     BOOK_INFOMATION_VIEW,

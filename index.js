@@ -49,7 +49,8 @@ app.get("/authorsearch",async (c) =>{
 
 app.post("/authorsearch",async (c) =>{
   const body = await c.req.parseBody();
-  const nothing = templates.NOT_FOUND();
+  const text = "該当蔵書なし"
+  const nothing = templates.MESSAGE(text);
   resp = templates.HTML(nothing);
   if(!body.author){
     return c.html(resp);
@@ -67,7 +68,8 @@ app.get("/authorsearch/:name", async (c) => {
   });
 
   if (typeof books === "undefined") {
-    const nothing = templates.NOT_FOUND();
+    const text = "該当蔵書なし"
+    const nothing = templates.MESSAGE(text);
     response = templates.HTML(nothing);
       return c.html(response);
   }
@@ -89,10 +91,12 @@ app.get("/publishersearch",async (c) =>{
 
 app.post("/publishersearch",async (c) =>{
   const body = await c.req.parseBody();
-  const nothing = templates.NOT_FOUND();
-  resp = templates.HTML(nothing);
+
   if(!body.publisher){
-    return c.html(resp);
+    const text = "該当蔵書なし"
+    const nothing = templates.MESSAGE(text);
+    response = templates.HTML(nothing);
+    return c.html(response);
   }
   return c.redirect(`/publishersearch/${body.publisher}`);
 })
@@ -107,7 +111,8 @@ app.get("/publishersearch/:name", async (c) => {
   });
 
   if (!books) {
-    const nothing = templates.NOT_FOUND();
+    const text = "該当蔵書なし"
+    const nothing = templates.MESSAGE(text);
     response = templates.HTML(nothing);
       return c.html(response);
   }
@@ -148,6 +153,9 @@ app.get("/:id", async (c) => {
     });
 
   });
+  if (!book) {
+    return c.notFound();
+}
     const bookInfomation = templates.BOOK_INFOMATION_VIEW(book);
     const response = templates.HTML(bookInfomation);
 
