@@ -10,13 +10,12 @@ const db = new sqlite3.Database("database.db");
 db.serialize(() => {
   
   db.run(queries.Books.createTable);
-  db.run(queries.Books.create,'満願','米澤穂信','yonezawahonobu','角川文庫','kadokawabunnko');
 
 });
 
 const app = new Hono();
 
-app.get("/", async (c) =>{
+app.get("/", async (c)  =>{
  
   const function_view = templates.FUNCTION_VIEW();
   const response = templates.HTML(function_view);
@@ -119,6 +118,20 @@ app.get("/publishersearch/:name", async (c) => {
   return c.html(response);
 });
 
+app.get("/situation", async (c) => {
+
+  const borrowedbook = await new Promise((resolve) => {
+   db.all(queries.Books.findBySituation, 0, (err, rows) => {
+        resolve(rows);
+    });
+   });
+ 
+   const subject = "貸出中の本";
+   const list = templates.BOOK_LIST_VIEW(subject,borrowedbook);
+   const response = templates.HTML(list);
+   return c.html(response);
+ });
+
 app.get("/addbook", async (c) => {
     const addbookForm = templates.ADD_BOOK_FORM_VIEW();
 
@@ -192,7 +205,7 @@ app.get("/:id/borrow", async (c) => {
   return c.html(response);
 });
 
-app.get("/:id/hennkyaku", async (c) => {
+app.get("/:id/return", async (c) => {
   const bookId = c.req.param("id");
 
   const book = await new Promise((resolve) => {
@@ -218,6 +231,8 @@ app.get("/:id/hennkyaku", async (c) => {
   const response = templates.HTML(message);
   return c.html(response);
 });
+
+
 
 
 

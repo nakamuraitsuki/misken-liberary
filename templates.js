@@ -20,7 +20,7 @@ const FUNCTION_VIEW = () =>`
 <h2 class="func">機能一覧</h2>
 <div class="func"><button  type="button" onclick="location.href='/authorsearch'">著者名検索</button></div>
 <div class="func"><button  type="button" onclick="location.href='/publishersearch'">出版社から検索</button></div>
-<div class="func"><button  type="button" onclick="location.href='/borrow'">貸し出し状況</button></div>
+<div class="func"><button  type="button" onclick="location.href='/situation'">貸し出し状況</button></div>
 <div class="func"><button  type="button" onclick="location.href='/allbook'">蔵書一覧</button></div>
 <div class="func"><button  type="button" onclick="location.href='/addbook'">本を追加</button></div>
 `;
@@ -67,7 +67,7 @@ const BOOK_INFOMATION_VIEW = (book) => `
 <h2>著者：${book.author}/出版文庫：${book.publisher}</h2>
 <p>紹介</p>
 <div class="func"><button type="button" onclick="location.href='/${book.id}/borrow'" >本を借りる</button></div>
-<div class="func"><button type="button" onclick="location.href='/${book.id}/hennkyaku'">本を返す</button></div>
+<div class="func"><button type="button" onclick="location.href='/${book.id}/return'">本を返す</button></div>
 
 <p><a href="../">＞戻る</a></p>
 `

@@ -19,6 +19,7 @@ const Books = {
     findByPublisher: `SELECT * FROM books WHERE publisher_alp = ? ;`,
     stockUpdate: `UPDATE books SET stock = ? WHERE id = ?;`,
     borrowedUpdate:`UPDATE books SET borrowed = ? WHERE id = ?;`,
+    findBySituation:`SELECT * FROM books WHERE borrowed != ?;`,
 };
   
 module.exports = {
