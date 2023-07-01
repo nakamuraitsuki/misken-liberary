@@ -10,6 +10,7 @@ const db = new sqlite3.Database("database.db");
 db.serialize(() => {
   
   db.run(queries.Books.createTable);
+  db.run(queries.Books.create,'満願','米澤穂信','yonezawahonobu','角川文庫','kadokawabunnko');
 
 });
 
@@ -110,12 +111,6 @@ app.get("/publishersearch/:name", async (c) => {
       });
   });
 
-  if (!books) {
-    const text = "該当蔵書なし"
-    const nothing = templates.MESSAGE(text);
-    response = templates.HTML(nothing);
-      return c.html(response);
-  }
   const subject ="以下の本が見つかりました";
   const booklist = templates.BOOK_LIST_VIEW(subject,books);
 
@@ -163,11 +158,45 @@ app.get("/:id", async (c) => {
   });
   if (!book) {
     return c.notFound();
-}
+  }
     const bookInfomation = templates.BOOK_INFOMATION_VIEW(book);
     const response = templates.HTML(bookInfomation);
 
     return c.html(response);
+});
+
+app.get("/:id/borrow", async (c) => {
+  const bookId = c.req.param("id");
+
+  const book = await new Promise((resolve) => {
+    db.get(queries.Books.findById, bookId, (err, row) => {
+        resolve(row);
+    });
+
+  });
+  
+
+  const text = "貸出が完了しました";
+  const message = templates.MESSAGE(text);
+  const response = templates.HTML(message);
+  return c.html(response);
+});
+
+app.get("/:id/return", async (c) => {
+  const bookId = c.req.param("id");
+
+  const book = await new Promise((resolve) => {
+    db.get(queries.Books.findById, bookId, (err, row) => {
+        resolve(row);
+    });
+
+  });
+  
+
+  const text = "返却が完了しました";
+  const message = templates.MESSAGE(text);
+  const response = templates.HTML(message);
+  return c.html(response);
 });
 
 

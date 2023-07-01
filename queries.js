@@ -17,6 +17,8 @@ const Books = {
     findById:`SELECT * FROM books WHERE id = ?;`,
     findByAutor: `SELECT * FROM books WHERE author_alp = ?;`,
     findByPublisher: `SELECT * FROM books WHERE publisher_alp = ? ;`,
+    stockUpdate: `UPDATE books SET stock = ? WHERE id = ?;`,
+    borrowedUpdate:`UPDATE books SET borrowed = '?' WHERE id = ?;`,
 };
   
 module.exports = {
