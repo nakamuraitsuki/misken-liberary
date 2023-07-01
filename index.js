@@ -174,26 +174,46 @@ app.get("/:id/borrow", async (c) => {
     });
 
   });
-  
+  if(book.stock != 0){
+    const newstock = book.stock - 1;
+    const newborrowed = book.borrowed + 1;
+   db.run(queries.Books.stockUpdate,newstock,bookId);
+   db.run(queries.Books.borrowedUpdate,newborrowed,bookId);
 
-  const text = "貸出が完了しました";
+   const text = "貸出が完了しました";
+   const message = templates.MESSAGE(text);
+   const response = templates.HTML(message);
+   return c.html(response);
+  }
+
+  const text = "借りられません";
   const message = templates.MESSAGE(text);
   const response = templates.HTML(message);
   return c.html(response);
 });
 
-app.get("/:id/return", async (c) => {
+app.get("/:id/hennkyaku", async (c) => {
   const bookId = c.req.param("id");
 
   const book = await new Promise((resolve) => {
     db.get(queries.Books.findById, bookId, (err, row) => {
         resolve(row);
     });
-
   });
-  
 
-  const text = "返却が完了しました";
+  if(book.borrowed != 0){
+    const newstock = book.stock + 1;
+    const newborrowed = book.borrowed - 1;
+    db.run(queries.Books.stockUpdate,newstock,bookId);
+    db.run(queries.Books.borrowedUpdate,newborrowed,bookId);
+
+    const text = "返却完了";
+    const message = templates.MESSAGE(text);
+    const response = templates.HTML(message);
+    return c.html(response);
+  }
+
+  const text = "借りていません";
   const message = templates.MESSAGE(text);
   const response = templates.HTML(message);
   return c.html(response);

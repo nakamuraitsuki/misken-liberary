@@ -67,7 +67,7 @@ const BOOK_INFOMATION_VIEW = (book) => `
 <h2>著者：${book.author}/出版文庫：${book.publisher}</h2>
 <p>紹介</p>
 <div class="func"><button type="button" onclick="location.href='/${book.id}/borrow'" >本を借りる</button></div>
-<div class="func"><button type="button" onclick="location.href='/${book.id}/return'">本を返す</button></div>
+<div class="func"><button type="button" onclick="location.href='/${book.id}/hennkyaku'">本を返す</button></div>
 
 <p><a href="../">＞戻る</a></p>
 `
