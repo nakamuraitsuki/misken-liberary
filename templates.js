@@ -62,10 +62,12 @@ const MESSAGE = (text) => `
 <h1 class="notfound">${text}</h1>
 <p class="notfound"><a href="../">＞戻る</a></p>
 `
+
 const BOOK_INFOMATION_VIEW = (book) => `
 <h1 class="func">${book.name}</h1>
 <h2>著者：${book.author}/出版文庫：${book.publisher}</h2>
 <img class="image" src="${book.image}" alt="画像データがありません">
+<div><button type="button" onclick="location.href='${book.id}/add_image'">画像を更新する</button></div>
 <div class="func"><button type="button" onclick="location.href='/${book.id}/borrow'" >本を借りる</button></div>
 <div class="func"><button type="button" onclick="location.href='/${book.id}/return'">本を返す</button></div>
 
