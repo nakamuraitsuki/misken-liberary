@@ -65,7 +65,7 @@ const MESSAGE = (text) => `
 const BOOK_INFOMATION_VIEW = (book) => `
 <h1 class="func">${book.name}</h1>
 <h2>著者：${book.author}/出版文庫：${book.publisher}</h2>
-<p>紹介</p>
+<img class="image" src="${book.image}" alt="画像データがありません">
 <div class="func"><button type="button" onclick="location.href='/${book.id}/borrow'" >本を借りる</button></div>
 <div class="func"><button type="button" onclick="location.href='/${book.id}/return'">本を返す</button></div>
 
@@ -86,6 +86,8 @@ const ADD_BOOK_FORM_VIEW = () => `
     <input type="text" name="publisher" id="publisher" />
     <label for="name">出版文庫アルファベットフリガナ</label>
     <input type="text" name="publisher_alp" id="publisher_alp" />
+    <label for="image">本の画像の外部url</label>
+    <input type="text" name="image" id="image" />
     <div class="func"><button type="submit">追加</button></div>
 </form>
 `;

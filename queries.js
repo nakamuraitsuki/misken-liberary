@@ -9,10 +9,11 @@ const Books = {
             publisher TEXT NOT NULL,
             publisher_alp TEXT NOT NULL,
             stock INTEGER DEFAULT '1',
-            borrowed INTEGER DEFAULT '0'
+            borrowed INTEGER DEFAULT '0',
+            image TEXT NOT NULL
         )
     `,
-    create: `INSERT INTO books (name, author, author_alp, publisher, publisher_alp) VALUES (?, ?, ?, ?, ?);`,
+    create: `INSERT INTO books (name, author, author_alp, publisher, publisher_alp , image) VALUES (?, ?, ?, ?, ?, ?);`,
     findAll: `SELECT * FROM books;`,
     findById:`SELECT * FROM books WHERE id = ?;`,
     findByAutor: `SELECT * FROM books WHERE author_alp = ?;`,

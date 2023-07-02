@@ -152,7 +152,7 @@ app.post("/addbook", async (c) => {
     }
 
     await new Promise((resolve) => {
-        db.run(queries.Books.create, body.name, body.author, body.author_alp , body.publisher, body.publisher_alp ,  (err) => {
+        db.run(queries.Books.create, body.name, body.author, body.author_alp , body.publisher, body.publisher_alp , body.image ,  (err) => {
             resolve();
         });
     });

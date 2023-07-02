@@ -72,6 +72,10 @@ body {
   .notfound{
     text-align: center;
   }
+  .image{
+    width: 20%;
+    height: auto;
+  }
 
   button[type="button"]{
     background-color:white;
